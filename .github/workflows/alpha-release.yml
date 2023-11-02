@@ -55,6 +55,8 @@ jobs:
           version: ${{ github.event.inputs.version }}
           git-tag-version: ${{ github.event.inputs.dry-run != 'true' }}
       - name: Push git tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.MERGE_ACTION }}
         if: github.event.inputs.dry-run == 'false'
         run: git push && git push --tags
       # Dry run
